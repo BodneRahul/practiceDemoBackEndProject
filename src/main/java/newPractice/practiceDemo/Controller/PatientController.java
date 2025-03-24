@@ -49,4 +49,8 @@ public class PatientController {
         patientService.deletePatient(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    public ResponseEntity<Void> testing(@RequestBody Patient patient){
+        return  new ResponseEntity<>(HttpStatus.OK);
+    }
 }
