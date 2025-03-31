@@ -24,6 +24,7 @@ public class PatientService {
                 PageRequest pageRequest = PageRequest.of(pageNo, pageSize, sort);//Sort.by(sortBy)
 
         Page<Patient> all = patientRepository.findAll(pageRequest);
+        System.out.println("this is ");
         return all.getContent();
         //return (List<Patient>) patientRepository.findAll(pageRequest);
     }
