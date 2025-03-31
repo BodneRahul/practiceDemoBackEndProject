@@ -3,6 +3,7 @@ package newPractice.practiceDemo.Controller;
 import newPractice.practiceDemo.Entity.Patient;
 import newPractice.practiceDemo.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,13 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping
-    public ResponseEntity<List<Patient>> getAllPatients() {
-        return new ResponseEntity<>(patientService.getAllPatients(), HttpStatus.OK);
+    public ResponseEntity<Page<Patient>> getAllPatients(
+            @RequestParam(name = "pageNo",defaultValue = "0",required = false) int pageNo,
+            @RequestParam(name="pageSize",defaultValue = "5",required = false) int pageSize
+
+
+    ) {
+        return new ResponseEntity<>(patientService.getAllPatients(pageNo,pageSize), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
