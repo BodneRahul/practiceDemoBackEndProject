@@ -1,8 +1,10 @@
 package newPractice.practiceDemo.Controller;
 
+import newPractice.practiceDemo.DTO.PatientDto;
 import newPractice.practiceDemo.Entity.Patient;
 import newPractice.practiceDemo.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +19,18 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping
-    public ResponseEntity<List<Patient>> getAllPatients() {
-        return new ResponseEntity<>(patientService.getAllPatients(), HttpStatus.OK);
+    public ResponseEntity<Page<Patient>> getAllPatients(
+            @RequestParam(name = "pageNo",defaultValue = "0",required = false) int pageNo,
+            @RequestParam(name="pageSize",defaultValue = "5",required = false) int pageSize
+
+
+    ) {
+        return new ResponseEntity<>(patientService.getAllPatients(pageNo,pageSize), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
-        Patient patient = patientService.getPatientById(id);
+    public ResponseEntity<PatientDto> getPatientById(@PathVariable Long id) {
+        PatientDto patient = patientService.getPatientById(id);
         if (patient != null) {
             return new ResponseEntity<>(patient, HttpStatus.OK);
         }
@@ -31,13 +38,13 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
-        return new ResponseEntity<>(patientService.savePatient(patient), HttpStatus.CREATED);
+    public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patientDto) {
+        return new ResponseEntity<>(patientService.savePatient(patientDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patientDetails) {
-        Patient updatedPatient = patientService.updatePatient(id, patientDetails);
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable Long id, @RequestBody PatientDto patientDetails) {
+        PatientDto updatedPatient = patientService.updatePatient(id, patientDetails);
         if (updatedPatient != null) {
             return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
         }
