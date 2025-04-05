@@ -1,17 +1,10 @@
-package newPractice.practiceDemo.Entity;
+package newPractice.practiceDemo.DTO;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
-
-@Entity
-@Table(name = "patients")
 @Data
-public class Patient {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PatientDto {
     private Long id;
 
     private String patientName;
@@ -26,5 +19,4 @@ public class Patient {
     private String phoneNumber;
     private String email;
     private String bloodGroup;
-
 }

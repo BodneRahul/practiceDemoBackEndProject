@@ -1,5 +1,6 @@
 package newPractice.practiceDemo.Controller;
 
+import newPractice.practiceDemo.DTO.PatientDto;
 import newPractice.practiceDemo.Entity.Patient;
 import newPractice.practiceDemo.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
-        Patient patient = patientService.getPatientById(id);
+    public ResponseEntity<PatientDto> getPatientById(@PathVariable Long id) {
+        PatientDto patient = patientService.getPatientById(id);
         if (patient != null) {
             return new ResponseEntity<>(patient, HttpStatus.OK);
         }
@@ -37,13 +38,13 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
-        return new ResponseEntity<>(patientService.savePatient(patient), HttpStatus.CREATED);
+    public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patientDto) {
+        return new ResponseEntity<>(patientService.savePatient(patientDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patientDetails) {
-        Patient updatedPatient = patientService.updatePatient(id, patientDetails);
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable Long id, @RequestBody PatientDto patientDetails) {
+        PatientDto updatedPatient = patientService.updatePatient(id, patientDetails);
         if (updatedPatient != null) {
             return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
         }
@@ -53,7 +54,6 @@ public class PatientController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
-        System.out.println("chsdkdhf");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
