@@ -28,6 +28,7 @@ public class EmployeeController {
         if (employee != null) {
             return new ResponseEntity<>(employee, HttpStatus.OK);
         }
+        System.out.println("Employee not found");
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
