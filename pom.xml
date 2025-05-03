@@ -67,6 +67,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -86,5 +87,5 @@
 		</plugins>
 		<finalName>jenkinsCiCd</finalName>
 	</build>
-
+	<packaging>war</packaging>
 </project>
