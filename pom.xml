@@ -85,7 +85,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>jenkinsCiCd</finalName>
+		<finalName>jenkinsCiCdScript</finalName>
 	</build>
 	<packaging>war</packaging>
 </project>
