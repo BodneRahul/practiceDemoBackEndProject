@@ -17,6 +17,7 @@ public class WebhookController {
         System.out.println("Webhook Received:");
         System.out.println("Device ID: " + payload.getDeviceId());
         System.out.println("Phone Number: " + payload.getPhoneNumber());
+        System.out.println();
         return ResponseEntity.ok("Webhook received successfully.");
     }
 }
