@@ -29,6 +29,7 @@ public class MockSmsService {
         Log.setType("Device_Registration");
         Log.setPhoneNumber(request.getPhoneNumber());
         Log.setMessage(msg);
+        System.out.println(Log);
         smsLogRepository.save(Log);
         //call webhhook
         DeviceWebhookPayload payload = new DeviceWebhookPayload();
