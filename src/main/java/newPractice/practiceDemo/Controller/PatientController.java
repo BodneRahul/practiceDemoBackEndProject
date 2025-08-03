@@ -49,4 +49,16 @@ public class PatientController {
         patientService.deletePatient(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/doctor/{doctorId}")
+    public ResponseEntity<List<Patient>>getPatientsOfDoctor(@PathVariable Long doctorId){
+        List<Patient> patientsOfDoctor = patientService.getPatientsOfDoctor(doctorId);
+        return new ResponseEntity<>(patientsOfDoctor,HttpStatus.OK);
+    }
+    @GetMapping("/prescription/{prescriptionId}")
+    public ResponseEntity<List<Patient>>getPatientsOfPrescription(@PathVariable Long prescriptionId){
+        List<Patient> patientsOfPrescription = patientService.getPatientsOfPrescription(prescriptionId);
+        System.out.println(patientsOfPrescription);
+        return new ResponseEntity<>(patientsOfPrescription,HttpStatus.OK);
+
+    }
 }
